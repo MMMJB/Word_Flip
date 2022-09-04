@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Roboto&display=swap');
+
+*, *::before, *::after {
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    /* height: 100vh;
+    width: 100vw; */
+    width: 376px;
+    height: 600px;
+    background-size: cover;
+    overflow: hidden auto;
+    background: #2FB5E0 url("../ASSETS/sky.jpg") no-repeat center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}   
+
+button {
+    appearance: none;
+    cursor: pointer;
+    border: unset;
+    background: unset;
+}
+
+.wood {
+    background-image: url("../ASSETS/wood.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#icon-container, #menu {
+    width: 100%;
+    height: 42.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4vh;
+}
+
+#icon-container {
+    background: url("../ASSETS/logo.png") no-repeat center;
+    background-size: 60%;
+}
+
+#header {
+    width: 100%;
+    height: 15%;
+    padding: 20px;
+    position: relative;
+}
+
+#announcer {
+    position: absolute;
+    width: 50%;
+    height: 60%;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Raleway, monospace;
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 0px 5px;
+    border-radius: 10px;
+    font-size: 3vw;
+    top: -100%;
+    opacity: 0;
+    transition: all 200ms ease-out;
+}
+
+#announcer:not(.hidden) {
+    top: 0;
+    opacity: 1;
+}
+
+#header > .button {
+    height: 100%;
+    aspect-ratio: 1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
+    border-radius: 10px;
+    transition: box-shadow 100ms ease-out, transform 100ms ease-out;
+    background-size: 75%;
+    position: relative;
+}
+
+.button.settings {
+    background: url("../ASSETS/gear.svg") no-repeat center;
+}
+
+.button.account {
+    float: right;
+    background: url("../ASSETS/user.svg") no-repeat center bottom;
+}
+
+.button.settings:not(.open) > #sound-container {
+    display: none;
+}
+
+.button.settings.open {
+    aspect-ratio: 5 / 1 !important;
+    background-position: 3%;
+    background-size: 15% !important;
+}
+
+#sound-container {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sound-icon {
+    height: 100%;
+    aspect-ratio: 1;
+    background: url("../ASSETS/sound.svg") no-repeat center;
+    background-size: 50%;
+    transform: rotateY(180deg);
+}
+
+.button.play {
+    position: relative;
+    width: 30%;
+    aspect-ratio: 1;
+    max-width: 10rem;
+    border-radius: 50%;
+    transition: all 100ms ease-out;
+    font-family: Raleway, monospace;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow:     
+        4px -4px 4px inset rgba(0, 0, 0, .12),
+        -4px -4px 4px inset rgba(0, 0, 0, .12),
+        -4px 4px 4px inset rgba(0, 0, 0, .12),
+        4px 4px 4px inset rgba(0, 0, 0, .12),
+        0px 4px 4px rgba(0, 0, 0, .25);
+    animation: bob 2s ease-in-out infinite;
+    transition: transform 500ms ease-out;
+    z-index: 2;
+}
+
+@keyframes bob {
+    0% { top: -5% }
+    50% { top: 5% }
+    100% { top: -5% }
+}
+
+#menu > .button::after {
+    content: '';
+    position: absolute;
+    left: 53%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 30%;
+    background: url("../ASSETS/play.svg") no-repeat center;
+    background-size: contain;
+}
+
+.button.play.open {
+    animation: unset !important;
+    transform: translateX(-100%);
+}
+
+.button.play.open + #play-options {
+    opacity: 1;
+    width: 75%;
+    max-width: 25rem;
+    aspect-ratio: 3 / 1;
+}
+
+#play-options {
+    position: absolute;
+    width: 30%;
+    max-width: 10rem;
+    aspect-ratio: 1;
+    z-index: 1;
+    border-radius: 50vh;
+    opacity: 0;
+    transition: all 500ms ease-out;
+    display: flex;
+    align-items: center;
+    box-shadow:
+        -4px 4px 4px inset rgba(0, 0, 0, .25),
+        -4px -4px 4px inset rgba(0, 0, 0, .25),
+}
+
+.content {
+    width: 95%;
+    height: 75%;
+    background-color: #4C3527;
+    border-radius: 50vh;
+    box-shadow:
+        -4px 4px 4px rgba(0, 0, 0, .25),
+        -4px -4px 4px rgba(0, 0, 0, .25);
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    overflow: hidden;
+    position: relative;
+}
+
+.content > .option {
+    position: relative;
+    left: 40%;
+    height: 75%;
+    aspect-ratio: 1;
+    background-size: contain;
+    transform: translateY(-150%);
+    transition: all 500ms ease-out;
+}
+
+.button.play.open + #play-options > .content > .option {
+    transform: translateY(0);
+}
+
+.option.timed {
+    background: url("../ASSETS/timed-t.svg") no-repeat center;
+}
+
+.option.daily {
+    background: url("../ASSETS/daily-t.svg") no-repeat center;
+    background-size: 90%;
+}
+
+.timed-options {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    background-color: #6b4b37;
+    box-shadow: 
+        -4px 4px 4px inset rgba(0, 0, 0, .05),
+        -4px -4px 4px inset rgba(0, 0, 0, .05);
+    transition: all 250ms ease-out;
+    border-radius: 50vh;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.option.timed.open ~ .timed-options {
+    left: 0%;
+}
+
+.timed-options > * {
+    position: relative;
+    left: 37%;
+    height: 60%;
+    aspect-ratio: 8 / 9;
+    background-size: contain;
+    transition: all 100ms ease-out;
+}
+
+#thirty {
+    background: url("../ASSETS/30.svg") no-repeat center;
+}
+
+#one {
+    background: url("../ASSETS/1.svg") no-repeat center;
+}
+
+#two {
+    background: url("../ASSETS/2.svg") no-repeat center;
+}
+
+@media (hover: hover) {
+    #header > .button:hover {
+        box-shadow: unset;
+        transform: translateY(4px);
+    }
+
+    .timed-options > *:hover {
+        transform: scale(1.05);
+    }
+}
+
+@media screen and (orientation: landscape) {
+    #menu {
+        padding: 4vh;
+    }
+
+    #announcer {
+        font-size: 3vh;
+    }
+
+    #icon-container {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        background-size: contain;
+    }
+}
